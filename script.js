@@ -4,10 +4,10 @@ const error = document.querySelector(".paragraph");
 const progressBar = document.querySelector(".progress-bar");
 const progressValue = document.querySelector(".progress-value");
 
-// Get saved goals or empty object if none
+
 const allGoal = JSON.parse(localStorage.getItem("allGoal")) || {};
 
-// ✅ Function to update progress bar dynamically
+
 function updateProgress() {
   const total = allInputList.length;
   const completed = [...allInputList].filter(
@@ -17,7 +17,7 @@ function updateProgress() {
   progressValue.style.width = `${percent}%`;
 }
 
-// ✅ On checkbox click
+
 checkBoxList.forEach((checkbox) => {
   checkbox.addEventListener("click", () => {
     const allGoalAdded = [...allInputList].every((input) => input.value.trim());
@@ -38,7 +38,7 @@ checkBoxList.forEach((checkbox) => {
   });
 });
 
-// ✅ On input typing
+
 allInputList.forEach((input) => {
   const goalData = allGoal[input.id];
   input.value = goalData?.name || "";
@@ -57,11 +57,11 @@ allInputList.forEach((input) => {
       completed: false,
     };
     localStorage.setItem("allGoal", JSON.stringify(allGoal));
-    updateProgress(); // Optional but helps reset progress if needed
+    updateProgress();
   });
 });
 
-// ✅ Initial call to update progress on load
+
 updateProgress();
 function updateProgress() {
   const total = allInputList.length;
@@ -71,7 +71,7 @@ function updateProgress() {
   const percent = total ? (completed / total) * 100 : 0;
   progressValue.style.width = `${percent}%`;
 
-  // 🆕 Update progress text
+
   const progressText = document.getElementById("progress-text");
   if (progressText) {
     progressText.textContent = `${completed}/${total} Completed`;
